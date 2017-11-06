@@ -51,7 +51,7 @@ app.post("/push", (request, response) => {
 
 app.get("/status/", (request, response) => {
   // We need to allow a request to come in to this endpoint from Manuscript so that
-  // Manuscript can display the status on it's integrations page
+  // Manuscript can display the status on it's integrations page.
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Methods", "GET");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
