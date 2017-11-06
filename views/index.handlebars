@@ -1,0 +1,77 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+
+    <h2>
+      Hello Manuscript!
+    </h2>
+    
+    
+    <div class="container">
+      <div id="activity-form">
+              <form>
+        <div class="input-combo">
+          <label class="form-label" for="account" name="account">FogBugz Account URL</label>
+          <p>
+            Example:  https://mistyriver.fogbugz.com
+          </p>
+          <input class="input-field" type="text" name="account" id="account" value="{{site}}" required>
+        </div>
+        <div class="input-combo">
+          <label class="form-label" for="apiToken" name="apiToken" >FogBugz API Token</label>
+          <p>
+            Learn how to generate a Manuscript API token <a href="http://help.fogcreek.com/8447/how-to-get-a-fogbugz-xml-api-token">here</a>.
+          </p>
+          <input class="input-field" type="password" name="token" id="token" value="{{token}}" required>
+        </div>
+        <div class="input-combo">
+        <label class="form-label" for="ixBug">Case Number</label>
+          <p>
+            (Optional) Enter a case number to add your message to an existing case.
+          </p>
+          <input class="input-field" name="ixBug" id="ixBug">
+        </div>
+        <div class="input-combo">
+          <label class="form-label" for="sTitle" >Case Title</label>
+            <p>
+              (Optional) Enter a title for your case.  You may prefer to omit if you are adding to an existing case.
+            </p>
+          <input class="input-field" name="sTitle" id="sTitle">
+        </div>
+        <div class="input-combo">
+          <label class="form-label" for="sText" name="message">Your message</label>
+            <p>
+              Enter text to push to your FogBugz activity feed!
+            </p>
+          <input class="input-field" name="sText" id="sText" required>
+        </div>
+        
+
+          <button type="submit" class="btn main">Submit</button>
+
+      </form>
+      </div>
+
+    
+      <div id="messages">
+          <div class="event-body"><img src="https://cdn.glitch.com/b6a2fe4b-e1a7-452f-afc3-d2f9ac9417f3%2Fmanuscript-logo-mark.svg?1507919278027" class="manuscript-logo">
+            <div class="event-comment welcome">
+              <p>
+                Hey there!  Welcome to hello-manuscript.  This project is meant to help get you started building an integration with Manuscript.  If you complete the form over 👈 , we'll push the content you've entered to your Manuscript accout.  You can take a look under the hood by checking out the projects's code, and remix it down 👇 to create your own.
+              </p>
+              <a class="glitch-remix-button" href="https://glitch.com/edit/#!/remix/{{domain}}"><img src="https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg" alt="Remix on Glitch" /></a>
+            </div>
+          </div>
+                
+
+      </div>
+    </div>
+    
+
+
