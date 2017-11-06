@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
-  let data={domain: process.env.PROJECT_DOMAIN}
+  let data = {domain: process.env.PROJECT_DOMAIN};
   Object.assign(data, request.query);
   response.render("index", data);
 });
@@ -38,21 +38,19 @@ app.post("/", (request, response) => {
 
 
 
-app.post("/push", function (req, res) {
-  console.log(req.body)
-  let mAPI = manuscript(req.body.account, req.body.token)
+app.post("/push", (request, response) => {
+  let mAPI = manuscript(request.body.account, request.body.token);
   let options = {
-    ixBug: req.body.ixBug,
-    sTitle: req.body.sTitle,
-    sText: req.body.sText
-  }
+    ixBug: request.body.ixBug,
+    sTitle: request.body.sTitle,
+    sText: request.body.sText
+  };
   mAPI.pushContent(options)
-    .then( data => {res.send(data)})
-    .catch( error => {res.send(error.errors.errors)})
+    .then( data => {response.send(data)})
+    .catch( error => {response.send(error.errors.errors)});
 })
 
-
-app.get("/status/", async (request, response) => {
+app.get("/status/", (request, response) => {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Methods", "GET");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
