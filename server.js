@@ -2,7 +2,6 @@
 // where your node app starts
 
 // init project
-const _ = require('underscore');
 const express = require('express');
 const exphbs  = require('express-handlebars');
 const manuscript = require('manuscript-api')
@@ -20,7 +19,7 @@ app.use(bodyParser.json());
 
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (request, response) {
+app.get("/", (request, response) => {
   let data = {domain: process.env.PROJECT_DOMAIN};
   Object.assign(data, request.query);
   response.render("index", data);

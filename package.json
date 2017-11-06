@@ -11,13 +11,6 @@
   },
   "dependencies": {
     "express": "^4.15.2",
-    "request": "^2.81.0",
-    "underscore": "^1.8.3",
-    "request-promise-native": "^1.0.4",
-    "url-join": "^2.0.1",
-    "request-promise": "^4.2.1",
-    "knockout": "^3.4.2",
-    "knockout-mapping": "^2.6.0",
     "body-parser": "^1.17.2",
     "manuscript-api": "*",
     "express-handlebars": "^3.0.0"
