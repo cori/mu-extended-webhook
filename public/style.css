@@ -66,12 +66,16 @@
 
 #header img {
 /*   unresized image :  118 X 170 */
-  width: 95px;
-  
+  width: 59px;
+  height: 85px;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 #header > h1 {
   font-size: 5em;
+  font-family: Menlo, monospace;
+  color: var(--darkgray)
 }
 
 form p {
@@ -83,6 +87,7 @@ form p {
   margin: 0px;
   display: flex;
   flex-direction: row;
+  font-family: Menlo, monospace;
 }
 
 .event-comment.failure{
@@ -114,7 +119,7 @@ form p {
 }
 
 .glitch-remix-button {
-/*   float: right; */
+  float: right;
   
 }
 
