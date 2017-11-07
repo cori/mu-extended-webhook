@@ -39,6 +39,8 @@ app.post("/", (request, response) => {
 
 app.post("/push", (request, response) => {
   let mAPI = manuscript(request.body.account, request.body.token);
+  // For simplicity, we're just passing sText to the pushContent endpoint. 
+  // You can pass sHtml instead.
   let options = {
     ixBug: request.body.ixBug,
     sTitle: request.body.sTitle,
