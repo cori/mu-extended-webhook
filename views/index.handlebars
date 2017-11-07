@@ -7,26 +7,28 @@
 <!-- haml: http://haml.info/ -->
 <!-- hbs(handlebars): http://handlebarsjs.com/ -->
 
-
-    <h2>
-      Hello Manuscript!
-    </h2>
+    <div id="header">
+      <img src="https://cdn.glitch.com/38495be4-ab24-4a53-864e-02ed6699e35c%2Fimage.png?1510091510968">
+      <h1>
+        Hello Manuscript!
+      </h1>
+    </div>
     
     
     <div class="container">
       <div id="activity-form">
               <form>
         <div class="input-combo">
-          <label class="form-label" for="account" name="account">FogBugz Account URL</label>
+          <label class="form-label" for="account" name="account">Manuscript Account URL</label>
           <p>
-            Example:  https://mistyriver.fogbugz.com
+            Example:  https://mistyriver.manuscript.com
           </p>
           <input class="input-field" type="text" name="account" id="account" value="{{site}}" required>
         </div>
         <div class="input-combo">
-          <label class="form-label" for="apiToken" name="apiToken" >FogBugz API Token</label>
+          <label class="form-label" for="apiToken" name="apiToken" >Manuscript API Token</label>
           <p>
-            Learn how to generate a Manuscript API token <a href="http://help.fogcreek.com/8447/how-to-get-a-fogbugz-xml-api-token">here</a>.
+            Learn how to generate a Manuscript API token <a href="http://help.fogcreek.com/12252/manuscript-xml-api-token">here</a>.
           </p>
           <input class="input-field" type="password" name="token" id="token" value="{{token}}" required>
         </div>
@@ -47,7 +49,7 @@
         <div class="input-combo">
           <label class="form-label" for="sText" name="message">Your message</label>
             <p>
-              Enter text to push to your FogBugz activity feed!
+              Enter text to push to your Manuscript activity feed!
             </p>
           <input class="input-field" name="sText" id="sText" required>
         </div>

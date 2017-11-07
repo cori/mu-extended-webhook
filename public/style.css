@@ -60,6 +60,20 @@
   border-radius: 20px
 }
 
+#header {
+  display: flex;
+}
+
+#header img {
+/*   unresized image :  118 X 170 */
+  width: 95px;
+  
+}
+
+#header > h1 {
+  font-size: 5em;
+}
+
 form p {
   color: #828293;
   font-size: .875em;
