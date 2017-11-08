@@ -127,3 +127,12 @@ form p {
   background-color: white;
   border-radius: 4px;
 }
+
+.glitch-remix-button img:hover {
+  background-color: var(--lightgray);
+  border-radius: 4px;
+}
+
+a {
+  cursor: pointer;
+}
