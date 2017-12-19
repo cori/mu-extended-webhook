@@ -7,16 +7,13 @@ const exphbs  = require('express-handlebars');
 const manuscript = require('manuscript-api')
 const app = express();
 const querystring = require('querystring');
+const bodyParser = require('body-parser');
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
-
 app.use(express.static('public'));
-
-const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
-
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
@@ -34,8 +31,6 @@ app.post("/", (request, response) => {
     })
     return response.redirect(`/?${query}`);
 })
-
-
 
 app.post("/push", (request, response) => {
   let mAPI = manuscript(request.body.account, request.body.token);
@@ -67,17 +62,12 @@ app.get("/status/", (request, response) => {
   } else {
     return response.send({status: "off"});
   }
-
-
-  
-
 });
 
 
 app.get("/test", function(req, res) {
   res.render('test', {layout: false})
 })
-
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
