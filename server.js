@@ -64,7 +64,6 @@ app.get("/status/", (request, response) => {
   }
 });
 
-
 app.get("/test", function(req, res) {
   res.render('test', {layout: false})
 })

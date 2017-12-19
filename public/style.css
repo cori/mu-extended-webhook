@@ -1,8 +1,5 @@
 /* styles */
 /* called by your view template */
-
-/* You might want to try something fancier: */
-/* less: http://lesscss.org/ */
 @import url("https://cdn.glitch.com/b6a2fe4b-e1a7-452f-afc3-d2f9ac9417f3%2FBentonSans-Regular.otf?1507134020174");
 * {
   box-sizing: border-box;
