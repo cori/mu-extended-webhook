@@ -17,7 +17,7 @@ This should consume a post body containing site and token.
 }
 ```
 
-The Manuscript integrations page hits this endpoint when a users clicks the integration tile.  In this sample app, we're simply redirecting to a prepopulated webform.  You'll probably want to do something more complex.  For example, in the integrations we've built out, we store this authentication data in a MongoDB instance.
+The Manuscript integrations page hits this endpoint when a user clicks the integration tile.  In this sample app, we're simply redirecting to a pre-populated webform.  You'll probably want to do something more complex.  For example, in the integrations we've built out, we store this authentication data in a MongoDB instance.
 
 *Note:* It's not safe to assume that all accounts looking to integrate will have an account URL that looks like example.manuscript.com.  For example, users of our self-hosted product set their own domain and subdomain, so the account URL can look like pretty much anything.
 
