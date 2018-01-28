@@ -81,7 +81,7 @@ app.post("/case", (request, response) => {
   console.log("case");
   // console.log(request.body);
   let mAPI = manuscript(process.env.URL, process.env.TOKEN);
-  let options = { "ixBug": request.body.casenumber, "cols":["plugin_customfields","areaid"] };
+  let options = { "q": request.body.casenumber, "cols":["plugin_customfields,ixArea"] };
   mAPI.search( options )
     .then( data => console.log(data))
     .catch( error => console.log( error));
