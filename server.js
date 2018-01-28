@@ -39,7 +39,7 @@ app.post("/case", (request, response) => {
   console.log("case");
   console.log(request.body.casenumber);
   let mAPI = manuscript(process.env.URL, process.env.TOKEN);
-  let options = { ixBBug: request.body.casenumber };
+  let options = { ixBug: request.body.casenumber };
   mAPI.viewCase( options )
     .then( data => console.log(data))
     .catch( error => console.log( error));
