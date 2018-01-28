@@ -28,7 +28,8 @@ app.post("/", (request, response) => {
       // We'll need to include the protocol when we make our API calls.
       site: `https://${request.body.site}`,
       token: request.body.token
-    })
+    });
+    console.log(request.body);
     console.log(request.body.site);
     console.log(request.body.token);
     return response.redirect(`/?${query}`);
