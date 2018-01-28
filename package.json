@@ -1,0 +1,25 @@
+{
+  "name": "hello-manuscript",
+  "version": "0.0.1",
+  "description": "A starting point for creating Manuscript integrations",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "body-parser": "^1.17.2",
+    "manuscript-api": "*",
+    "express-handlebars": "^3.0.0"
+  },
+  "engines": {
+    "node": "8.0.0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "manuscript",
+    "express"
+  ]
+}

@@ -1,0 +1,80 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+    <div id="header">
+      <img src="https://cdn.glitch.com/38495be4-ab24-4a53-864e-02ed6699e35c%2Fimage.png?1510091510968">
+      <h1>
+        Hello Manuscript!
+      </h1>
+    </div>
+    
+    
+    <div class="container">
+      <div id="activity-form">
+              <form>
+        <div class="input-combo">
+          <label class="form-label" for="account" name="account">Manuscript Account URL</label>
+          <p>
+            Example:  https://mistyriver.manuscript.com
+          </p>
+          <input class="input-field" type="text" name="account" id="account" value="{{site}}" required>
+        </div>
+        <div class="input-combo">
+          <label class="form-label" for="apiToken" name="apiToken" >Manuscript API Token</label>
+          <p>
+            Learn how to generate a Manuscript API token <a href="http://help.fogcreek.com/12252/manuscript-xml-api-token">here</a>.
+          </p>
+          <input class="input-field" type="password" name="token" id="token" value="{{token}}" required>
+        </div>
+        <div class="input-combo">
+        <label class="form-label" for="ixBug">Case Number</label>
+          <p>
+            (Optional) Enter a case number to add your message to an existing case.
+          </p>
+          <input class="input-field" name="ixBug" id="ixBug">
+        </div>
+        <div class="input-combo">
+          <label class="form-label" for="sTitle" >Case Title</label>
+            <p>
+              (Optional) Enter a title for your case.  You may prefer to omit if you are adding to an existing case.
+            </p>
+          <input class="input-field" name="sTitle" id="sTitle">
+        </div>
+        <div class="input-combo">
+          <label class="form-label" for="sText" name="message">Your message</label>
+            <p>
+              Enter text to push to your Manuscript activity feed!
+            </p>
+          <input class="input-field" name="sText" id="sText" required>
+        </div>
+        
+
+          <button type="submit" class="btn main">Submit</button>
+
+      </form>
+      </div>
+
+    
+      <div id="messages">
+          <div class="event-body"><img src="https://cdn.glitch.com/b6a2fe4b-e1a7-452f-afc3-d2f9ac9417f3%2Fmanuscript-logo-mark.svg?1507919278027" class="manuscript-logo">
+            <div class="event-comment welcome">
+              <p>
+                Welcome!  This project is here to help get you started building your integration with Manuscript.  If you complete the form over 👈 , we'll push the content you've entered to your Manuscript account.  You can take a look under the hood by checking out the projects's <a href="https://glitch.com/edit/#!/{{domain}}">code</a>. If you are ready to get started, remix this project down 👇 to create your own.
+              </p>
+              <a class="glitch-remix-button" href="https://glitch.com/edit/#!/remix/{{domain}}"><img src="https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg" alt="Remix on Glitch" /></a>
+            </div>
+          </div>          
+          <div class="event-body"><img src="https://cdn.glitch.com/b6a2fe4b-e1a7-452f-afc3-d2f9ac9417f3%2Fmanuscript-logo-mark.svg?1507919278027" class="manuscript-logo">
+            <div class="event-comment welcome">
+              <p>
+                The project's <a hhref="https://glitch.com/edit/#!/remix/{{domain}}?path=README.md:1:0">readme</a> should provide you with some guidance, but once you're working, you aren't alone.  Raise your <a href="https://medium.com/glitch/just-raise-your-hand-how-glitch-helps-aa6564cb1685">🖐</a> to get help from the community (and we're part of the community) to get help in real time.
+              </p>
+            </div>
+          </div>
+                
+
+      </div>
+    </div>
+    
+
+
