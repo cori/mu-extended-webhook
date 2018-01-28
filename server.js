@@ -81,9 +81,14 @@ app.post("/case", (request, response) => {
   console.log("case");
   // console.log(request.body);
   let mAPI = manuscript(process.env.URL, process.env.TOKEN);
-  let options = { "q": request.body.casenumber, "cols":["plugin_customfields,ixArea"] };
+  let options = { "q": request.body.casenumber, "cols":["plugin_customfields"] };
+  var muCase = {};
   mAPI.search( options )
-    .then( data => console.log(data))
+    .then( data => {
+      let muCase = data;
+      console.log(data);
+      console.log(data.plugin_customfields);
+    })
     .catch( error => console.log( error));
 
     // return response.redirect(`/?${query}`);
