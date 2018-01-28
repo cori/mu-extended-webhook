@@ -29,6 +29,18 @@ app.post("/", (request, response) => {
       site: `https://${request.body.site}`,
       token: request.body.token
     });
+    console.log("site: " + request.body.site);
+    console.log("token: " + request.body.token);
+    return response.redirect(`/?${query}`);
+})
+
+app.post("/case", (request, response) => {
+    const query = querystring.stringify({
+      // The Manuscript integrations page sends the site name without the protocol
+      // We'll need to include the protocol when we make our API calls.
+      site: `https://${request.body.site}`,
+      token: request.body.token
+    });
     console.log(request.body);
     console.log("site: " + request.body.site);
     console.log("token: " + request.body.token);
