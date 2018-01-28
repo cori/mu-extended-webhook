@@ -87,6 +87,7 @@ app.post("/case", (request, response) => {
       console.log(data);
       console.log(data.cases[0]);
       console.log(data.cases[0].plugin_customfields);
+      console.log(normalizeFieldName('plugin_customfields_at_fogcreek_com_xenophobbicxxeroxxexxd43'));
     })
     .catch( error => console.log( error));
 });
@@ -95,7 +96,9 @@ function processCustomFields(webHookBody, customFields) {}
 
 function normalizeFieldName( pluginCustomFieldName ) {
   var name = pluginCustomFieldName.replace('plugin_customfields_at_fogcreek_com_','');
-  name = name.replace('
+  var re = /.+(x{1})/g;
+  name = name.replace(re,'_');
+  return name;
 }
 app.post("/push", (request, response) => {
   let mAPI = manuscript(request.body.account, request.body.token);
