@@ -29,6 +29,7 @@ app.post("/", (request, response) => {
       site: `https://${request.body.site}`,
       token: request.body.token
     });
+    console.log("/");
     console.log("site: " + request.body.site);
     console.log("token: " + request.body.token);
     return response.redirect(`/?${query}`);
@@ -41,10 +42,9 @@ app.post("/case", (request, response) => {
       site: `https://${request.body.site}`,
       token: request.body.token
     });
-    console.log(request.body);
-    console.log("site: " + request.body.site);
-    console.log("token: " + request.body.token);
-    return response.redirect(`/?${query}`);
+    console.log("case");
+    console.log(request.body.casenumber);
+    // return response.redirect(`/?${query}`);
 })
 
 app.post("/push", (request, response) => {
