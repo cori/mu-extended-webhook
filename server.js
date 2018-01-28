@@ -37,7 +37,7 @@ app.post("/", (request, response) => {
 
 app.post("/case", (request, response) => {
   console.log("case");
-  console.log(request.body.casenumber);
+  console.log(request.body);
   let mAPI = manuscript(process.env.URL, process.env.TOKEN);
   let options = { "ixBug": request.body.casenumber, "cols":"plugin_customfields" };
   mAPI.viewCase( options )
