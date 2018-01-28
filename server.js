@@ -93,6 +93,10 @@ app.post("/case", (request, response) => {
 
 function processCustomFields(webHookBody, customFields) {}
 
+function makeWebhookFieldName( pluginCustomFieldName ) {
+  var name = pluginCustomFieldName.replace('plugin_customfields_at_fogcreek_com_','');
+  // name = name.replace(
+}
 app.post("/push", (request, response) => {
   let mAPI = manuscript(request.body.account, request.body.token);
   // For simplicity, we're just passing sText to the pushContent endpoint. 
