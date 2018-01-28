@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 var fullCaseDetailFields = {
   "eventtype":"CaseEdited",
-  "casenumber":"123",
+  "ixBug":"123",
   "caseeventid":"2345",
   "personeditingid":"2",
   "personeditingname":"Administrator",
