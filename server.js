@@ -82,17 +82,16 @@ app.post("/case", (request, response) => {
   // console.log(request.body);
   let mAPI = manuscript(process.env.URL, process.env.TOKEN);
   let options = { "q": request.body.casenumber, "cols":["plugin_customfields"] };
-  var muCase = {};
   mAPI.search( options )
     .then( data => {
-      let muCase = data;
       console.log(data);
-      console.log(data.plugin_customfields);
+      console.log(data.cases[0]);
+      console.log(data.cases[0].plugin_customfields);
     })
     .catch( error => console.log( error));
+});
 
-    // return response.redirect(`/?${query}`);
-})
+function processCustomFields(webHookBody, customFields) {}
 
 app.post("/push", (request, response) => {
   let mAPI = manuscript(request.body.account, request.body.token);
