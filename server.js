@@ -30,8 +30,8 @@ app.post("/", (request, response) => {
       token: request.body.token
     });
     console.log(request.body);
-    console.log(request.body.site);
-    console.log(request.body.token);
+    console.log("site: " + request.body.site);
+    console.log("token: " + request.body.token);
     return response.redirect(`/?${query}`);
 })
 
@@ -47,6 +47,8 @@ app.post("/push", (request, response) => {
   mAPI.pushContent(options)
     .then( data => {response.send(data)})
     .catch( error => {response.send(error.errors.errors)});
+  console.log("push:");
+  console.log(options);
 })
 
 app.get("/status/", (request, response) => {
