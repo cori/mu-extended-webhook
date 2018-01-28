@@ -36,14 +36,12 @@ app.post("/", (request, response) => {
 })
 
 app.post("/case", (request, response) => {
-    const query = querystring.stringify({
-      // The Manuscript integrations page sends the site name without the protocol
-      // We'll need to include the protocol when we make our API calls.
-      site: `https://${request.body.site}`,
-      token: request.body.token
-    });
-    console.log("case");
-    console.log(request.body.casenumber);
+  console.log("case");
+  console.log(request.body.casenumber);
+  let mAPI = manuscript(process.env.URL, process.env.TOKEN);
+  var cs = mAPI.viewCase(request.body.casenumber);
+  console.log(cs);
+
     // return response.redirect(`/?${query}`);
 })
 
