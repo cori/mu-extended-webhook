@@ -29,6 +29,8 @@ app.post("/", (request, response) => {
       site: `https://${request.body.site}`,
       token: request.body.token
     })
+    console.log(request.body.site);
+    console.log(request.body.token);
     return response.redirect(`/?${query}`);
 })
 
