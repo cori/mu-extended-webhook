@@ -39,8 +39,9 @@ app.post("/case", (request, response) => {
   console.log("case");
   console.log(request.body.casenumber);
   let mAPI = manuscript(process.env.URL, process.env.TOKEN);
-  var cs = mAPI.viewCase(request.body.casenumber);
-  console.log(cs);
+  mAPI.viewCase(request.body.casenumber)
+    .then( data => console.log(data))
+    .cath( error => console.log( error.
 
     // return response.redirect(`/?${query}`);
 })
