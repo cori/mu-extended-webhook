@@ -13,7 +13,7 @@
     "express-handlebars": "^3.0.0"
   },
   "engines": {
-    "node": "7.6.0"
+    "node": "8.0.0"
   },
   "license": "MIT",
   "keywords": [
