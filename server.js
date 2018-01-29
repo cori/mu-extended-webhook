@@ -15,6 +15,48 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
+var fullCaseDetailFields = {
+  "eventtype":"CaseEdited",
+  "ixBug":"123",
+  "caseeventid":"2345",
+  "personeditingid":"2",
+  "personeditingname":"Administrator",
+  "title":"Awesomeness",
+  "statusid":"1",
+  "statusname":"Active",
+  "projectid":"1",
+  "projectname":"Sample Project",
+  "areaid":"1",
+  "areaname":"Code",
+  "fixforid":"1",
+  "milestoneid":"1",
+  "fixforname":"Undecided",
+  "milestonename":"Undecided",
+  "category":"1",
+  "assignedtoid":"2",
+  "assignedtoname":"Administrator",
+  "priorityid":"3",
+  "priorityname":"Must Fix",
+  "duedate":"",
+  "currentestimate":"0",
+  "elapsedtime":"0",
+  "version":"",
+  "computer":"",
+  "releasenotes":"",
+  "customeremail":"",
+  "eventtime":"2015-07-16 15:17:41Z",
+  "eventtext":"some case comment here",
+  "emailfrom":"",
+  "emailto":"",
+  "emailcc":"",
+  "emailbcc":"",
+  "emailreplyto":"",
+  "emailsubject":"",
+  "emaildate":"",
+  "emailbodytext":"",
+  "emailbodyhtml":""
+};
+
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
   let data = {domain: process.env.PROJECT_DOMAIN};
@@ -41,11 +83,21 @@ app.post("/case", (request, response) => {
   let mAPI = manuscript(process.env.URL, process.env.TOKEN);
   let options = { "ixBug": request.body.casenumber, "cols":"plugin_customfields" };
   mAPI.viewCase( options )
-    .then( data => console.log(data))
+    .then( data => {
+      console.log(data);
+      console.log(data.cases[0]);
+      console.log(data.cases[0].plugin_customfields);
+      console.log(normalizeFieldName('plugin_customfields_at_fogcreek_com_xenophobbicxxeroxxexxd43'));
+    })
     .catch( error => console.log( error));
+});
 
-    // return response.redirect(`/?${query}`);
-})
+function normalizeFieldName( pluginCustomFieldName ) {
+  var name = pluginCustomFieldName.replace('plugin_customfields_at_fogcreek_com_','');
+  var re = /.+(x{1})/g;
+  name = name.replace(re,'_');
+  return name;
+}
 
 app.post("/push", (request, response) => {
   let mAPI = manuscript(request.body.account, request.body.token);
