@@ -10,7 +10,8 @@
     "express": "^4.15.2",
     "body-parser": "^1.17.2",
     "manuscript-api": "*",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "simple-node-logger":
   },
   "engines": {
     "node": "8.0.0"
