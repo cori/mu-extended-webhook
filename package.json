@@ -11,7 +11,7 @@
     "body-parser": "^1.17.2",
     "manuscript-api": "*",
     "express-handlebars": "^3.0.0",
-    "simple-node-logger":
+    "simple-node-logger":"*"
   },
   "engines": {
     "node": "8.0.0"

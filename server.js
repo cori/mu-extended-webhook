@@ -8,6 +8,7 @@ const manuscript = require('manuscript-api')
 const app = express();
 const querystring = require('querystring');
 const bodyParser = require('body-parser');
+const log = require('simple-node-logger').createSimpleLogger('glitch.log');
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -87,8 +88,8 @@ app.post("/case", (request, response) => {
       console.log(data);
       console.log(data.cases[0]);
       console.log(data.cases[0].plugin_customfields);
-      console.log(normalizeFieldName('plugin_customfields_at_fogcreek_com_xenophobbicxxeroxxexxd43'));
-    })
+
+      log.info(data.cases[0]);    })
     .catch( error => console.log( error));
 });
 
