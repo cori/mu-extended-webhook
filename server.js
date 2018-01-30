@@ -65,19 +65,6 @@ app.get("/", (request, response) => {
   response.render("index", data);
 });
 
-app.post("/", (request, response) => {
-    const query = querystring.stringify({
-      // The Manuscript integrations page sends the site name without the protocol
-      // We'll need to include the protocol when we make our API calls.
-      site: `https://${request.body.site}`,
-      token: request.body.token
-    });
-    console.log("/");
-    console.log("site: " + request.body.site);
-    console.log("token: " + request.body.token);
-    return response.redirect(`/?${query}`);
-})
-
 app.post("/case", (request, response) => {
   console.log("case");
   // console.log(request.body);
@@ -89,54 +76,26 @@ app.post("/case", (request, response) => {
       console.log(data.cases[0]);
       console.log(data.cases[0].plugin_customfields);
 
-      log.info(data.cases[0]);    })
+      // log.info(data.cases[0]);
+      console.log( normalizeFieldName( "plugin_customfields_at_fogcreek_com_codexbasew21" ) );
+      console.log( normalizeFieldName( "plugin_customfields_at_fogcreek_com_forumxposte42" ) );
+      console.log( normalizeFieldName( "plugin_customfields_at_fogcreek_com_xenophobbicxxeroxxexxd43" ) );
+  })
     .catch( error => console.log( error));
 });
 
 function processCustomFields(webHookBody, customFields) {}
 
 function normalizeFieldName( pluginCustomFieldName ) {
-  var name = pluginCustomFieldName.substring(0,pluginCustomFieldName.length - 3).replace('plugin_customfields_at_fogcreek_com_','');
-  return name;
-}
-
-app.post("/push", (request, response) => {
-  let mAPI = manuscript(request.body.account, request.body.token);
-  // For simplicity, we're just passing sText to the pushContent endpoint. 
-  // You can pass sHtml instead.
-  let options = {
-    ixBug: request.body.ixBug,
-    sTitle: request.body.sTitle,
-    sText: request.body.sText
-  };
-  mAPI.pushContent(options)
-    .then( data => {response.send(data)})
-    .catch( error => {response.send(error.errors.errors)});
-  console.log("push:");
-  console.log(options);
-})
-
-app.get("/status/", (request, response) => {
-  // We need to allow a request to come in to this endpoint from Manuscript so that
-  // Manuscript can display the status on it's integrations page.
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Methods", "GET");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
-
-  // We're not doing anything with this in this sample app,
-  // but you'll probably want to check the status of the site.
-  let site = request.query.site;
+  //  custom field fieldname always start with the same plugin identifier, and end with a random 3 digit string.
+  //  spaces are replaced by 'x', but we can't reliably replace those without possibly catching 'x' in field names
+  //  so this is about as good as we can do.
   
-  if (true) {
-    return response.send({status: "on"});
-  } else {
-    return response.send({status: "off"});
-  }
-});
+  var name = pluginCustomFieldName.substring(0,pluginCustomFieldName.length - 3).replace('plugin_customfields_at_fogcreek_com_','');
 
-app.get("/test", function(req, res) {
-  res.render('test', {layout: false})
-})
+  return name;
+
+}
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
