@@ -69,9 +69,10 @@ app.post("/case", (request, response) => {
   console.log("case");
   // console.log(request.body);
   let mAPI = manuscript(process.env.URL, process.env.TOKEN);
-  let options = { "q": request.body.casenumber, "cols":["plugin_customfields"] };
+  let options = { "q": request.body.casenumber, "cols":["plugin_customfields"] };  //  this is fine for single webhooks; what does this look like when batched?
   mAPI.search( options )
     .then( data => {
+      processCustomFields(request.body, data.cases[0]);
       console.log(data);
       console.log(data.cases[0]);
       console.log(data.cases[0].plugin_customfields);
@@ -84,11 +85,10 @@ app.post("/case", (request, response) => {
     .catch( error => console.log( error));
 });
 
-function processCustomFields(webHookBody, customFields) {
-  //  if batch poted we could have multiple cases
-  //  for each case we'll have properties that start with plugin_customfields_at_fogcreek_com_
+function processCustomFields(webHookBody, c) {
+  //  find properties that start with plugin_customfields_at_fogcreek_com_
   //    iterate those props and normalize the field name and append that with its corresponding value to the case data
-  //    then return the array of cases to ... do what?
+  //    in the webhook body then return the body to ... do what?
 }
 
 function normalizeFieldName( pluginCustomFieldName ) {
