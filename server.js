@@ -78,7 +78,8 @@ app.post("/case", (request, response) => {
 
 function processCustomFields(webHookBody, caseData) {
   console.log(webHookBody);
-  console.log(caseData.getOwnPropertyNames());
+  console.log(typeof(caseData));
+  // console.log(caseData.getOwnPropertyNames());
   //  find properties that start with plugin_customfields_at_fogcreek_com_
   //    iterate those props and normalize the field name and append that with its corresponding value to the case data
   //    in the webhook body then return the body to ... do what?
