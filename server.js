@@ -84,14 +84,19 @@ app.post("/case", (request, response) => {
     .catch( error => console.log( error));
 });
 
-function processCustomFields(webHookBody, customFields) {}
+function processCustomFields(webHookBody, customFields) {
+  //  if batch poted we could have multiple cases
+  //  for each case we'll have properties that start with plugin_customfields_at_fogcreek_com_
+  //    iterate those props and normalize the field name and append that with its corresponding value to the case data
+  //    then return the array of cases to ... do what?
+}
 
 function normalizeFieldName( pluginCustomFieldName ) {
   //  custom field fieldname always start with the same plugin identifier, and end with a random 3 digit string.
   //  spaces are replaced by 'x', but we can't reliably replace those without possibly catching 'x' in field names
   //  so this is about as good as we can do.
   
-  var name = pluginCustomFieldName.substring(0,pluginCustomFieldName.length - 3).replace('plugin_customfields_at_fogcreek_com_','');
+  var name = pluginCustomFieldName.substring( 0, pluginCustomFieldName.length - 3 ).replace( 'plugin_customfields_at_fogcreek_com_', '' );
 
   return name;
 
