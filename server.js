@@ -16,48 +16,6 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-var fullCaseDetailFields = {
-  "eventtype":"CaseEdited",
-  "ixBug":"123",
-  "caseeventid":"2345",
-  "personeditingid":"2",
-  "personeditingname":"Administrator",
-  "title":"Awesomeness",
-  "statusid":"1",
-  "statusname":"Active",
-  "projectid":"1",
-  "projectname":"Sample Project",
-  "areaid":"1",
-  "areaname":"Code",
-  "fixforid":"1",
-  "milestoneid":"1",
-  "fixforname":"Undecided",
-  "milestonename":"Undecided",
-  "category":"1",
-  "assignedtoid":"2",
-  "assignedtoname":"Administrator",
-  "priorityid":"3",
-  "priorityname":"Must Fix",
-  "duedate":"",
-  "currentestimate":"0",
-  "elapsedtime":"0",
-  "version":"",
-  "computer":"",
-  "releasenotes":"",
-  "customeremail":"",
-  "eventtime":"2015-07-16 15:17:41Z",
-  "eventtext":"some case comment here",
-  "emailfrom":"",
-  "emailto":"",
-  "emailcc":"",
-  "emailbcc":"",
-  "emailreplyto":"",
-  "emailsubject":"",
-  "emaildate":"",
-  "emailbodytext":"",
-  "emailbodyhtml":""
-};
-
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", (request, response) => {
   let data = {domain: process.env.PROJECT_DOMAIN};
@@ -78,7 +36,9 @@ app.post("/case", (request, response) => {
 
 function processCustomFields(webHookBody, caseData) {
   console.log(webHookBody);
-  log.iÓnfo(caseData);
+  log.info(caseData);
+  var customFieldNames = Object.getOwnPropertyNames(caseData).filter( name => name.startsWith('plugin_customfields_at_fogcreek_com_'))
+  customFieldNames.
   // console.log(caseData.getOwnPropertyNames());
   //  find properties that start with plugin_customfields_at_fogcreek_com_
   //    iterate those props and normalize the field name and append that with its corresponding value to the case data
