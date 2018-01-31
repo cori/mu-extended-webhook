@@ -24,12 +24,12 @@ app.get("/", (request, response) => {
 });
 
 app.post("/case", (request, response) => {
-  console.log("case");
   let mAPI = manuscript(process.env.URL, process.env.TOKEN);
   let options = { "q": request.body.casenumber, "cols":["plugin_customfields"] };  //  this is fine for single webhooks; what does this look like when batched?
   mAPI.search( options )
     .then( data => {
       processCustomFields(request.body, data.cases[0]);
+      console.log(webHookBody);
   })
     .catch( error => console.log( error));
 });
@@ -39,8 +39,10 @@ function processCustomFields(webHookBody, caseData) {
   log.info(caseData);
   var customFieldNames = Object.getOwnPropertyNames(caseData).filter( name => name.startsWith('plugin_customfields_at_fogcreek_com_'))
   for ( var i =0; i < customFieldNames.length; i++ ) {
-    webHookBody
+    let thisFieldName = customFieldNames[i];
+    webHookBody[normalizeFieldName(thisFieldName)] = caseData[thisFieldName];
   }
+  console.log(webHookBody);
   // console.log(caseData.getOwnPropertyNames());
   //  find properties that start with plugin_customfields_at_fogcreek_com_
   //    iterate those props and normalize the field name and append that with its corresponding value to the case data
