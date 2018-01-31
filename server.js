@@ -8,7 +8,6 @@ const manuscript = require('manuscript-api')
 const app = express();
 const querystring = require('querystring');
 const bodyParser = require('body-parser');
-const log = require('simple-node-logger').createSimpleLogger('glitch.log');
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -23,7 +22,7 @@ app.get("/", (request, response) => {
   response.render("index", data);
 });
 
-app.post("/case", (request, response) => {
+app.post("/", (request, response) => {
   let mAPI = manuscript(process.env.URL, process.env.TOKEN);
   let options = { "q": request.body.casenumber, "cols":["plugin_customfields"] };  //  this is fine for single webhooks; what does this look like when batched?
   mAPI.search( options )
