@@ -38,7 +38,9 @@ function processCustomFields(webHookBody, caseData) {
   console.log(webHookBody);
   log.info(caseData);
   var customFieldNames = Object.getOwnPropertyNames(caseData).filter( name => name.startsWith('plugin_customfields_at_fogcreek_com_'))
-  for ( var i =0; customFieldNames
+  for ( var i =0; i < customFieldNames.length; i++ ) {
+    webHookBody
+  }
   // console.log(caseData.getOwnPropertyNames());
   //  find properties that start with plugin_customfields_at_fogcreek_com_
   //    iterate those props and normalize the field name and append that with its corresponding value to the case data
