@@ -29,24 +29,21 @@ app.post("/case", (request, response) => {
   mAPI.search( options )
     .then( data => {
       processCustomFields(request.body, data.cases[0]);
-      console.log(webHookBody);
+      
   })
     .catch( error => console.log( error));
 });
 
 function processCustomFields(webHookBody, caseData) {
-  console.log(webHookBody);
-  log.info(caseData);
+
   var customFieldNames = Object.getOwnPropertyNames(caseData).filter( name => name.startsWith('plugin_customfields_at_fogcreek_com_'))
+  
   for ( var i =0; i < customFieldNames.length; i++ ) {
+  
     let thisFieldName = customFieldNames[i];
     webHookBody[normalizeFieldName(thisFieldName)] = caseData[thisFieldName];
+  
   }
-  console.log(webHookBody);
-  // console.log(caseData.getOwnPropertyNames());
-  //  find properties that start with plugin_customfields_at_fogcreek_com_
-  //    iterate those props and normalize the field name and append that with its corresponding value to the case data
-  //    in the webhook body then return the body to ... do what?
 }
 
 function normalizeFieldName( pluginCustomFieldName ) {
