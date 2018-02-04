@@ -24,19 +24,21 @@ app.get("/", (request, response) => {
 });
 
 app.post("/", (request, response) => {
-  console.log(request.body);
   let mAPI = manuscript(process.env.URL, process.env.TOKEN);
-  let options = { "q": request.body.casenumber, "cols":["plugin_customfields"] };  //  this is fine for single webhooks; what does this look like when batched?
-  mAPI.search( options )
-    .then( data => {
-      processCustomFields(request.body, data.cases[0]);
-      
-  })
-    .catch( 
-      error => {
-        console.log( error);
-        response.status(500).send();
+  
+  request.body.forEach (bodyItem => {
+    let options = { "q": bodyItem.casenumber, "cols":["plugin_customfields"] };  //  this is fine for single webhooks; what does this look like when batched?
+    mAPI.search( options )
+      .then( data => {
+        processCustomFields(bodyItem, data.cases[0]);
+      })
+      .catch( 
+        error => {
+          console.log( error);
+          response.status(500).send();
       });
+  });
+
 });
 
 function processCustomFields(webHookBody, caseData) {
