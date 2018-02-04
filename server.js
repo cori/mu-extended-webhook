@@ -8,6 +8,9 @@ const manuscript = require('manuscript-api')
 const app = express();
 const querystring = require('querystring');
 const bodyParser = require('body-parser');
+const mAPI = manuscript(process.env.URL, process.env.TOKEN);
+const http = require('http');
+const url = require('url');
 
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -25,8 +28,13 @@ app.get("/", (request, response) => {
 
 app.post("/", (request, response) => {
   
-  request.body.forEach (bodyItem => {
-  });
+  if ( Array.isArray( request.body ) ) {
+    request.body.forEach (bodyItem => {
+      handleCases( bodyItem );
+    });
+  } else {
+    handleCases( request.body );
+  }
 
 });
 
@@ -40,7 +48,34 @@ function handleCases( caseItem ) {
       error => {
         console.log( error);
         return error;
+      }
+    );
+}
+
+function sendPost( body ) {
+  
+  var post_options = {
+      host: 'closure-compiler.appspot.com',
+      port: '80',
+      path: '/compile',
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Length': Buffer.byteLength(post_data)
+      }
+  };
+
+  // Set up the request
+  var post_req = http.request(post_options, function(res) {
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+          console.log('Response: ' + chunk);
       });
+  });
+
+  // post the data
+  post_req.write(post_data);
+  post_req.end();  
 }
 
 function processCustomFields(webHookBody, caseData) {
