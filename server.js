@@ -31,7 +31,11 @@ app.post("/", (request, response) => {
       processCustomFields(request.body, data.cases[0]);
       
   })
-    .catch( error => console.log( error));
+    .catch( 
+      error => {
+        console.log( error);
+        response.status(500).send();
+      });
 });
 
 function processCustomFields(webHookBody, caseData) {
