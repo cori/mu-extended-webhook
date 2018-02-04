@@ -5,4 +5,4 @@ The main purpose of this app is to add (approximate) field names and field value
 
 Field names can only be approximated because of the way that Manuscript generates the storage field names for customer fields can't be reversed to actual field names.
 
-Place the url and token of your Manuscript site and the url of the final destination for the webhook data.
+Place the url and token of your Manuscript site and the url of the final destination for the webhook data in your .env file.
