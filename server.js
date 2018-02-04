@@ -24,6 +24,7 @@ app.get("/", (request, response) => {
 });
 
 app.post("/", (request, response) => {
+  console.log(request.body);
   let mAPI = manuscript(process.env.URL, process.env.TOKEN);
   let options = { "q": request.body.casenumber, "cols":["plugin_customfields"] };  //  this is fine for single webhooks; what does this look like when batched?
   mAPI.search( options )
