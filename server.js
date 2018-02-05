@@ -39,6 +39,7 @@ app.post("/", (request, response) => {
   }
 
   var res = sendPost(request.body);
+  console.log("in post");
   console.log(res);
   response.send(res);
 
@@ -74,7 +75,8 @@ function sendPost( body ) {
         //   console.log('end:');
         //   console.log(res);
         // });
-      console.log
+      console.log("in sendPost");
+      console.log(res);
       return res;
     });
   } else {    
