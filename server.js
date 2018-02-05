@@ -60,8 +60,9 @@ function sendPost( body ) {
   
   var post_options = new URL(process.env.FWD_URL);
   post_options.METHOD = 'POST';
+  let post_data = qs.stringify(body);
+  
   if( process.env.URL.startsWith('https') ) {
-    // post_options.protocol = 'https:';
     var post_req = https.request(post_options, function(res) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
@@ -77,13 +78,9 @@ function sendPost( body ) {
     });
   }
 
-  // Set up the request
-
-  // post the data
-  let post_data = qs.stringify(body);
   post_req.write(post_data);
   post_req.end();
-  console.log('badoink');
+
 }
 
 function processCustomFields(webHookBody, caseData) {
@@ -96,6 +93,7 @@ function processCustomFields(webHookBody, caseData) {
     webHookBody[normalizeFieldName(thisFieldName)] = caseData[thisFieldName];
   
   }
+  
 }
 
 function normalizeFieldName( pluginCustomFieldName ) {
