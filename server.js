@@ -68,6 +68,10 @@ function sendPost( body ) {
         res.on('data', function (chunk) {
             console.log('Response: ' + chunk);
         });
+        res.on('end', function() {
+          console.log('end:');
+          console.log(res);
+        });
     });
   } else {    
     var post_req = http.request(post_options, function(res) {
@@ -76,6 +80,10 @@ function sendPost( body ) {
             console.log('Response: ' + chunk);
         });
     });
+  }
+  
+  post_req.on('error',(e) => {
+    
   }
 
   post_req.write(post_data);
