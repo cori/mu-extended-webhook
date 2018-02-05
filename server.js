@@ -66,7 +66,7 @@ function sendPost( body ) {
   let post_data = qs.stringify(body);
   
   if( process.env.URL.startsWith('https') ) {
-    var post_req = https.request(post_options, function(res) {
+    var post_req = https.request(post_options);//, function(res) {
         // res.setEncoding('utf8');
         // res.on('data', function (chunk) {
         //     console.log('Response: ' + chunk);
@@ -76,6 +76,9 @@ function sendPost( body ) {
         //   console.log(res);
         //   return res;
         // });
+    // });
+    post_data.response( function ( msg ) {
+      return msg;
     });
   } else {    
     var post_req = http.request(post_options, function(res) {
