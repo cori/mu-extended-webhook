@@ -66,39 +66,21 @@ function sendPost( body ) {
   let post_data = qs.stringify(body);
   
   if( process.env.URL.startsWith('https') ) {
-    var post_req = https.request(post_options);//, function(res) {
-        // res.setEncoding('utf8');
-        // res.on('data', function (chunk) {
-        //     console.log('Response: ' + chunk);
-        // });
-        // res.on('end', function() {
-        //   console.log('end:');
-        //   console.log(res);
-        //   return res;
-        // });
-    // });
-    post_data.response( function ( msg ) {
-      return msg;
-    });
+    var post_req = https.request(post_options);
   } else {    
-    var post_req = http.request(post_options, function(res) {
-      // return res;
-        // res.setEncoding('utf8');
-        // res.on('data', function (chunk) {
-        //     console.log('Response: ' + chunk);
-        // });
-    });
+    var post_req = http.request(post_options);
   }
+  
+  post_req.end(post_data);
+
+  post_req.on('response', function ( msg ) {
+    console.log('in response');
+    console.log(msg);
+    return msg;
+  });
   
   post_req.on('error',(e) => {
     return e;    
-  });
-
-  // post_req.write(post_data);
-  post_req.end(post_data, res => {
-    console.log("in end");
-    console.log(res);
-    return res;
   });
 
 }
