@@ -38,7 +38,9 @@ app.post("/", (request, response) => {
     handleCases( request.body );
   }
 
-  sendPost(request.body);
+  var res = sendPost(request.body);
+  console.log(res);
+  response.send(res);
 
 });
 
@@ -64,27 +66,30 @@ function sendPost( body ) {
   
   if( process.env.URL.startsWith('https') ) {
     var post_req = https.request(post_options, function(res) {
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            console.log('Response: ' + chunk);
-        });
-        res.on('end', function() {
-          console.log('end:');
-          console.log(res);
-        });
+        // res.setEncoding('utf8');
+        // res.on('data', function (chunk) {
+        //     console.log('Response: ' + chunk);
+        // });
+        // res.on('end', function() {
+        //   console.log('end:');
+        //   console.log(res);
+        // });
+      console.log
+      return res;
     });
   } else {    
     var post_req = http.request(post_options, function(res) {
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            console.log('Response: ' + chunk);
-        });
+      return res;
+        // res.setEncoding('utf8');
+        // res.on('data', function (chunk) {
+        //     console.log('Response: ' + chunk);
+        // });
     });
   }
   
   post_req.on('error',(e) => {
-    
-  }
+    return e;    
+  });
 
   post_req.write(post_data);
   post_req.end();
