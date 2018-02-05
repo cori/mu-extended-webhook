@@ -74,14 +74,12 @@ function sendPost( body ) {
         // res.on('end', function() {
         //   console.log('end:');
         //   console.log(res);
+        //   return res;
         // });
-      console.log("in sendPost");
-      console.log(res);
-      return res;
     });
   } else {    
     var post_req = http.request(post_options, function(res) {
-      return res;
+      // return res;
         // res.setEncoding('utf8');
         // res.on('data', function (chunk) {
         //     console.log('Response: ' + chunk);
@@ -93,8 +91,12 @@ function sendPost( body ) {
     return e;    
   });
 
-  post_req.write(post_data);
-  post_req.end();
+  // post_req.write(post_data);
+  post_req.end(post_data, res => {
+    console.log("in end");
+    console.log(res);
+    return res;
+  });
 
 }
 
